@@ -25,8 +25,13 @@ export function UpdateInvoice({ id }: { id: string }) {
   );
 }
 
-export function DeleteInvoice({ id }: { id: string }) {
-  const deleteInvoiceWithId = deleteInvoice.bind(null, id);
+export function DeleteInvoice({
+  id,
+  deleteInvoiceWithId,
+}: {
+  id: string;
+  deleteInvoiceWithId: (formData: FormData) => Promise<void>;
+}) {
   return (
     <>
       <form action={deleteInvoiceWithId}>
@@ -37,4 +42,8 @@ export function DeleteInvoice({ id }: { id: string }) {
       </form>
     </>
   );
+}
+
+export async function deleteInvoiceWithId(formData: FormData, id: string) {
+  await deleteInvoice(id);
 }
